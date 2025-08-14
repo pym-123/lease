@@ -5,9 +5,9 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+@Component
 
-public class MybatisMetaObjectHandle {
-    @Component
+
     public class MybatisMetaObjectHandler implements MetaObjectHandler {
         @Override
         public void insertFill(MetaObject metaObject) {
@@ -19,4 +19,4 @@ public class MybatisMetaObjectHandle {
             this.strictUpdateFill(metaObject, "updateTime", Date.class, new Date());
         }
     }
-}
+

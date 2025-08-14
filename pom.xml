@@ -13,7 +13,6 @@
         <module>common</module>
         <module>model</module>
         <module>web</module>
-        <module>model</module>
     </modules>
 
     <name>lease2</name>

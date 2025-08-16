@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 @Component
 
-
     public class MybatisMetaObjectHandler implements MetaObjectHandler {
         @Override
         public void insertFill(MetaObject metaObject) {
             this.strictInsertFill(metaObject, "createTime", Date.class, new Date());
+            this.strictInsertFill(metaObject,"updateTime", Date.class,new Date());
         }
 
         @Override

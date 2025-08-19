@@ -14,6 +14,6 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverterFactory(this.stringToBaseEnumConverterFactory);
+        registry.addConverterFactory(stringToBaseEnumConverterFactory);
     }
 }

@@ -58,13 +58,14 @@ public class AttrController {
     @DeleteMapping("key/deleteById")
     public Result removeAttrKeyById(@RequestParam Long attrKeyId) {
 
-        attrKeyService.removeById(attrKeyId);
 
         LambdaQueryWrapper<AttrValue> queryWrapper = new LambdaQueryWrapper<>();
 
         queryWrapper.eq(AttrValue::getAttrKeyId,attrKeyId);
 
         attrValueService.remove(queryWrapper);
+
+        attrKeyService.removeById(attrKeyId);
 
         return Result.ok();
     }

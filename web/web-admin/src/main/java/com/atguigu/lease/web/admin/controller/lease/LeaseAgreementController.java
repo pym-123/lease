@@ -20,6 +20,7 @@ public class LeaseAgreementController {
     @Operation(summary = "保存或修改租约信息")
     @PostMapping("saveOrUpdate")
     public Result saveOrUpdate(@RequestBody LeaseAgreement leaseAgreement) {
+
         return Result.ok();
     }
 

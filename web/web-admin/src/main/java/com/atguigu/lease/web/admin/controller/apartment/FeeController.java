@@ -59,13 +59,14 @@ public class FeeController {
     @DeleteMapping("key/deleteById")
     public Result deleteFeeKeyById(@RequestParam Long feeKeyId) {
 
-        feeKeyService.removeById(feeKeyId);
 
         LambdaQueryWrapper<FeeValue> queryWrapper = new LambdaQueryWrapper<>();
 
         queryWrapper.eq(FeeValue::getFeeKeyId, feeKeyId);
 
         feeValueService.remove(queryWrapper);
+
+        feeKeyService.removeById(feeKeyId);
 
         return Result.ok();
     }

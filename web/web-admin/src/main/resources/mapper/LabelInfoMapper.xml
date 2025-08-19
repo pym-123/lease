@@ -4,4 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.lease.web.admin.mapper.LabelInfoMapper">
 
+    <select id="selectLabelInfoList" resultType="com.atguigu.lease.model.entity.LabelInfo">
+        SELECT li.*
+        FROM
+            label_info li
+                LEFT JOIN room_label rl ON rl.label_id = li.id
+                AND rl.is_deleted = 0
+        WHERE
+            rl.room_id = #{id} and li.is_deleted = 0
+    </select>
 </mapper>

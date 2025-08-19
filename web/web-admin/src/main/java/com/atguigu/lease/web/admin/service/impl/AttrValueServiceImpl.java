@@ -1,10 +1,14 @@
 package com.atguigu.lease.web.admin.service.impl;
 
+import com.atguigu.lease.web.admin.vo.attr.AttrValueVo;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.atguigu.lease.model.entity.AttrValue;
 import com.atguigu.lease.web.admin.service.AttrValueService;
 import com.atguigu.lease.web.admin.mapper.AttrValueMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author liubo
@@ -14,6 +18,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class AttrValueServiceImpl extends ServiceImpl<AttrValueMapper, AttrValue>
     implements AttrValueService{
+
+    @Autowired
+    private AttrValueMapper attrValueMapper;
+
+    @Override
+    public List<AttrValueVo> getAttrValueVoList(Long id) {
+        return attrValueMapper.attrValueMapper(id);
+    }
 
 }
 

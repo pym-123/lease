@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.UUID;
 
 @Service
-@Slf4j
 public class FileServiceImpl implements FileService {
     @Autowired
     private MinioProperties minioProperties;
@@ -27,7 +26,6 @@ public class FileServiceImpl implements FileService {
     @Override
 
     public String upload(MultipartFile file) {
-        log.info(minioProperties.getEndpoint());
         MinioClient minioClient = minioConfiguration.getMinioClient();
 
         try{

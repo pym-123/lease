@@ -4,4 +4,53 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.lease.web.admin.mapper.ApartmentInfoMapper">
 
+    <select id="selectPageApartmentItem" resultType="com.atguigu.lease.web.admin.vo.apartment.ApartmentItemVo">
+        SELECT
+            ai.id,
+            ai.name,
+            ai.introduction,
+            ai.district_id,
+            ai.district_name,
+            ai.city_id,
+            ai.city_name,
+            ai.province_id,
+            ai.province_name,
+            ai.address_detail,
+            ai.latitude,
+            ai.longitude,
+            ai.phone,
+            ai.is_release,
+            ifnull( rc,0) total_room_count,
+            ifnull( rc,0)-ifnull(lc,0) free_room_count
+        FROM
+            (select             id,
+                                name,
+                                introduction,
+                                district_id,
+                                district_name,
+                                city_id,
+                                city_name,
+                                province_id,
+                                province_name,
+                                address_detail,
+                                latitude,
+                                longitude,
+                                phone,
+                                is_release from apartment_info
+                                <where>
+                                    is_deleted = 0
+                                    <if test="apartmentQueryVo.provinceId!=null">
+                                        and province_id = #{apartmentQueryVo.provinceId}
+                                    </if>
+                                    <if test="apartmentQueryVo.cityId!=null">
+                                        and city_id = #{apartmentQueryVo.cityId}
+                                    </if>
+                                    <if test="apartmentQueryVo.districtId!=null">
+                                        and district_id = #{apartmentQueryVo.districtId}
+                                    </if>
+                                </where>
+                                              ) ai
+                LEFT JOIN (SELECT apartment_id, count(*) rc FROM room_info WHERE is_deleted = 0 AND is_release = 1 GROUP BY apartment_id ) ri ON ai.id = ri.apartment_id
+                LEFT JOIN ( SELECT apartment_id, count(*) lc FROM lease_agreement WHERE is_deleted = 0 and status in(2,5)  GROUP BY apartment_id ) la ON ai.id = la.apartment_id
+    </select>
 </mapper>

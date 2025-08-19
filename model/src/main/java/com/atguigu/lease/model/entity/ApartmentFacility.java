@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Schema(description = "公寓&配套关系")
 @TableName(value = "apartment_facility")
-@Data
+//@Data
 @Builder
 public class ApartmentFacility extends BaseEntity {
 
@@ -23,4 +23,47 @@ public class ApartmentFacility extends BaseEntity {
     private Long facilityId;
 
 
+    public ApartmentFacility() {
+    }
+
+    public ApartmentFacility(Long apartmentId, Long facilityId) {
+        this.apartmentId = apartmentId;
+        this.facilityId = facilityId;
+    }
+
+    /**
+     * 获取
+     * @return apartmentId
+     */
+    public Long getApartmentId() {
+        return apartmentId;
+    }
+
+    /**
+     * 设置
+     * @param apartmentId
+     */
+    public void setApartmentId(Long apartmentId) {
+        this.apartmentId = apartmentId;
+    }
+
+    /**
+     * 获取
+     * @return facilityId
+     */
+    public Long getFacilityId() {
+        return facilityId;
+    }
+
+    /**
+     * 设置
+     * @param facilityId
+     */
+    public void setFacilityId(Long facilityId) {
+        this.facilityId = facilityId;
+    }
+
+    public String toString() {
+        return "ApartmentFacility{serialVersionUID = " + serialVersionUID + ", apartmentId = " + apartmentId + ", facilityId = " + facilityId + "}";
+    }
 }

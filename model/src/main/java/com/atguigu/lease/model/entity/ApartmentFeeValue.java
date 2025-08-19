@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Schema(description = "公寓&杂费关联表")
 @TableName(value = "apartment_fee_value")
-@Data
+//@Data
 @Builder
 public class ApartmentFeeValue extends BaseEntity {
 
@@ -23,4 +23,48 @@ public class ApartmentFeeValue extends BaseEntity {
     @TableField(value = "fee_value_id")
     private Long feeValueId;
 
+
+    public ApartmentFeeValue() {
+    }
+
+    public ApartmentFeeValue(Long apartmentId, Long feeValueId) {
+        this.apartmentId = apartmentId;
+        this.feeValueId = feeValueId;
+    }
+
+    /**
+     * 获取
+     * @return apartmentId
+     */
+    public Long getApartmentId() {
+        return apartmentId;
+    }
+
+    /**
+     * 设置
+     * @param apartmentId
+     */
+    public void setApartmentId(Long apartmentId) {
+        this.apartmentId = apartmentId;
+    }
+
+    /**
+     * 获取
+     * @return feeValueId
+     */
+    public Long getFeeValueId() {
+        return feeValueId;
+    }
+
+    /**
+     * 设置
+     * @param feeValueId
+     */
+    public void setFeeValueId(Long feeValueId) {
+        this.feeValueId = feeValueId;
+    }
+
+    public String toString() {
+        return "ApartmentFeeValue{serialVersionUID = " + serialVersionUID + ", apartmentId = " + apartmentId + ", feeValueId = " + feeValueId + "}";
+    }
 }

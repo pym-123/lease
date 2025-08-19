@@ -15,6 +15,6 @@
     </resultMap>
 
     <select id="selectListWithKeyValue" resultMap="selectListWithKeyValueResultMap">
-        select k.id,k.`name`,v.id value_id,v.`name` value_name,v.fee_key_id,v.unit  from fee_key k left join fee_value v on k.id=v.fee_key_id where k.is_deleted=0 and v.is_deleted=0
+        select k.id,k.`name`,v.id value_id,v.`name` value_name,v.fee_key_id,v.unit  from fee_key k left join fee_value v on k.id=v.fee_key_id and v.is_deleted=0 where k.is_deleted=0
     </select>
 </mapper>

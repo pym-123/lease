@@ -87,6 +87,9 @@ public class RoomInfoServiceImpl extends ServiceImpl<RoomInfoMapper, RoomInfo>
     @Autowired
     private RoomPaymentTypeMapper roomPaymentTypeMapper;
 
+    @Autowired
+    private LeaseAgreementMapper leaseAgreementMapper;
+
 
     @Override
     public void saveOrUpdateRoom(RoomSubmitVo roomSubmitVo) {
@@ -379,7 +382,13 @@ public class RoomInfoServiceImpl extends ServiceImpl<RoomInfoMapper, RoomInfo>
 
         roomInfoLambdaQueryWrapper.eq(RoomInfo::getApartmentId, id);
 
-        return  roomInfoMapper.selectList(roomInfoLambdaQueryWrapper);
+        List<RoomInfo> roomInfoList = roomInfoMapper.selectList(roomInfoLambdaQueryWrapper);
+
+        List<Long> busyRoomIdList = leaseAgreementMapper.selectBusyRoomId(id);
+
+        roomInfoList.removeIf(roomInfo -> busyRoomIdList.contains(roomInfo.getId()));//大多数ORM框架（如MyBatis）通常返回空列表而不是null，但仍建议进行防御性编程
+
+        return roomInfoList;
 
     }
 }

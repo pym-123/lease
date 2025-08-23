@@ -78,6 +78,7 @@ public class RoomController {
 
         List<RoomInfo> roomInfoList = roomInfoService.listBasicByApartmentId(id);
 
+
         return Result.ok(roomInfoList);
     }
 

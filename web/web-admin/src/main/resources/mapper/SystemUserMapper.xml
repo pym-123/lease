@@ -4,4 +4,35 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.lease.web.admin.mapper.SystemUserMapper">
 
+    <select id="selectSystemUserItemVoPage" resultType="com.atguigu.lease.web.admin.vo.system.user.SystemUserItemVo">
+        SELECT
+            su.*,
+            sp.NAME post_name
+        FROM
+            system_user su,
+            system_post sp
+        <where>
+            su.post_id = sp.id and su.is_deleted = 0 and sp.is_deleted = 0
+            <if test="queryVo.name!=null and queryVo.name!=''">
+                and su.name like "%"#{queryVo.name}"%"
+            </if>
+            <if test="queryVo.phone!=null and queryVo.phone!=''">
+                and su.phone like "%"#{queryVo.phone}"%"
+            </if>
+        </where>
+
+    </select>
+    <select id="selectSystemUserItemVoById" resultType="com.atguigu.lease.web.admin.vo.system.user.SystemUserItemVo">
+        SELECT
+        su.*,
+        sp.NAME post_name
+        FROM
+        system_user su,
+        system_post sp
+        WHERE
+        su.post_id = sp.id
+        AND su.id = #{id}
+        AND su.is_deleted = 0 AND sp.is_deleted = 0
+    </select>
+
 </mapper>

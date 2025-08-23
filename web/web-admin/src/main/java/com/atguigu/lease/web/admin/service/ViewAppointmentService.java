@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ViewAppointmentService extends IService<ViewAppointment> {
 
+    IPage<AppointmentVo> pageAppointmentVoList(IPage<AppointmentVo> iPage, AppointmentQueryVo queryVo);
 }

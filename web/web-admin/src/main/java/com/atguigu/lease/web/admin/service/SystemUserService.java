@@ -13,4 +13,17 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface SystemUserService extends IService<SystemUser> {
 
+    IPage<SystemUserItemVo> getSystemUserItemVoPage(IPage<SystemUserItemVo> iPage, SystemUserQueryVo queryVo);
+
+    IPage<SystemUserItemVo> getSystemUserItemVoPage2(IPage<SystemUserItemVo> iPage, SystemUserQueryVo queryVo);
+
+    IPage<SystemUserItemVo> getSystemUserItemVoPage3(IPage<SystemUserItemVo> iPage, SystemUserQueryVo queryVo);
+
+
+    SystemUserItemVo getSystemUserItemVoById(Long id);
+
+    SystemUserItemVo getSystemUserItemVoById2(Long id);
+
+
+
 }

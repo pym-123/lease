@@ -12,6 +12,12 @@ spring:
       maximum-pool-size: 12 #连接池最大连接数，默认是10
       minimum-idle: 10 #最小空闲连接数量
       pool-name: SPHHikariPool # 连接池名称
+  data:
+    redis:
+      host: 192.168.128.100
+      port: 6379
+      database: 0
+      password: 123456
 #用于打印框架生成的sql语句，便于调试
 mybatis-plus:
   configuration:
@@ -29,3 +35,9 @@ minio:
   access-key: minioadmin
   secret-key: minioadmin
   bucket-name: lease-0528
+
+admin:
+  auth:
+    path-patterns:
+      include: /admin/**
+      exclude: /admin/login/**

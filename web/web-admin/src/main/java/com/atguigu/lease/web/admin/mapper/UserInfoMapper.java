@@ -1,7 +1,9 @@
 package com.atguigu.lease.web.admin.mapper;
 
 import com.atguigu.lease.model.entity.UserInfo;
+import com.atguigu.lease.web.admin.vo.user.UserInfoQueryVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 
 /**
 * @author liubo
@@ -11,6 +13,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
+    IPage<UserInfo> selectpageUserInfo(IPage<UserInfo> iPage, UserInfoQueryVo queryVo);
 }
 
 
